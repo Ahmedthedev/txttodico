@@ -1,87 +1,60 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 
+#define SIZE 30
+#define LEN 31
+#define SIZE 30
+#define LEN 31
 
+int main()
+{
+char name[LEN][SIZE]; /* Data records */
+char hold[LEN] ;
+int i,j ; /* indices of array */
+int last ; /* index of last item in array */
 
-int main() {
+FILE *fpPtr; /* fpPtr = sorted_file.txt pointer */
 
-    FILE *fp = fopen ( "readFile.txt", "r");
-    FILE *fw = fopen ( "writeFile.txt", "w");
-    int i = 0;
-    char table[100] = "lol";
-    char *input[10] = {0};
-   // printf("input -> %d",sizeof(input));
-    int stringLen = sizeof(input) / sizeof(char *);
+/*
+copy file contents to array
+*/
 
-    int firstWord = 0;
-    int count = 0;
-    char line[30];
-    char ch;
-    int x = 0;
-    int index = 0;
-    while ( (ch = getc ( fp )) != EOF ) {
-        if(ch != 32) {
-            count = 0;
-        }
+/* fopen opens file; exits program if file cannot be opened */
+if ( ( fpPtr = fopen("readFile.txt", "r" ) ) == NULL ) {
+printf( "File could not be opened" );
+} /* End if */
 
-        while ( ch >= 32 && ch <= 64  || ch >= 122) {
-            if(0 == count && 0 != firstWord ) {
-                ch = '\0';
-                count++;
-            }else{
-                ch = getc ( fp );
-            }
-        }
-        printf("line[%d] = %c \n",index,ch);
-        line[index] = ch;
-        index++;
-        if(ch == '\0') {
-           printf(" line = %s\n",line);
-           input[i] = line;
-           printf(" input[%d] ==  %s\n",i,input[i]);
-           i++;
-           index = 0;
-        }
+/* Read records from file */
+else {
+/* While not end of file */
+printf("The names in original order are");
+for(i = 0 ; !feof( fpPtr ) ; i++ ) {
+fscanf( fpPtr, "%s", name[i] );
+printf("%s", name[i]);
+} /* End while */
+last = i - 1 ;
 
+fclose( fpPtr ); /* fclose closes the file */
 
-       // fputc(ch,fw);
-        //printf("%d => %c \n",ch,ch);
-        firstWord++;
-            //fputc(ch,fw);
-
-    }
-
-         for (i=0; i<stringLen; ++i)
-        printf("%d: %s\n", i, input[i]);
-
-
-
-
-    //printf("%d",index);
-
-
-    fclose ( fw );
-    fclose ( fp );
-    return 0;
-
-    /*
-        qsort(input, stringLen, sizeof(char *), myCompare);
-
-        for (i=0; i<stringLen; ++i)
-            printf("%d: %s\n", i, input[i]);
-    */
+/*
+sort
+*/
+for (i = last ; i > 0 ; i--)
+for (j = 1 ; j <= i ; j++)
+if (strcmp(name[j],name[j - 1]) < 0) {
+strcpy(hold,name[j]) ;
+strcpy(name[j],name[j - 1]) ;
+strcpy(name[j - 1],hold) ;
 }
-         /* if ( ch != '\n'){
-            line[index++] = ch; // insére à la suite tant que pas \n
-        }else {
-            line[index] = '\0'; // remplace \n par un \0 fin de chaine
-            index=0;
-            printf("line = %s\nwords = %s\n", line,words);
-           if(strcmp(line,words) == 0) {
-                printf("trouver");
-                x = 1;
-                break;
-            }
-        }*/
+/*
+write array to output
+*/
+printf("The names in alphabetical order are");
+for (i = 0 ; i <= last ; i++)
+printf("- %s",name[i]);
+
+} /* End else */
+
+return 0; /* Indicates that the program terminated successfully */
+} /* End Main */
