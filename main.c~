@@ -15,10 +15,16 @@ int i,j ; /* indices of array */
 int last ; /* index of last item in array */
 
 FILE *fpPtr; /* fpPtr = sorted_file.txt pointer */
+FILE *fpPtrWrite; /* fpPtr = sorted_file.txt pointer */
 
 /*
 copy file contents to array
 */
+
+/* fopen opens file; exits program if file cannot be opened */
+if ( ( fpPtrWrite = fopen("writeFile.txt", "w" ) ) == NULL ) {
+printf( "File could not be opened" );
+}
 
 /* fopen opens file; exits program if file cannot be opened */
 if ( ( fpPtr = fopen("readFile.txt", "r" ) ) == NULL ) {
@@ -28,7 +34,7 @@ printf( "File could not be opened" );
 /* Read records from file */
 else {
 /* While not end of file */
-printf("The names in original order are");
+printf("dans le fichiers il y a\n");
 for(i = 0 ; !feof( fpPtr ) ; i++ ) {
 fscanf( fpPtr, "%s", name[i] );
 printf("%s", name[i]);
@@ -50,11 +56,14 @@ strcpy(name[j - 1],hold) ;
 /*
 write array to output
 */
-printf("The names in alphabetical order are");
-for (i = 0 ; i <= last ; i++)
-printf("- %s",name[i]);
-
+char * integer = "lol";
+printf("\n ordre alphabetique \n ");
+for (i = 0 ; i <= last ; i++) {
+printf("%d -> %s \n",i,name[i]);
+fprintf(fpPtrWrite,"%s \n",name[i]);
+}
 } /* End else */
 
 return 0; /* Indicates that the program terminated successfully */
 } /* End Main */
+

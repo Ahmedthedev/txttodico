@@ -58,7 +58,7 @@ write array to output
 */
 char * integer = "lol";
 printf("\n ordre alphabetique \n ");
-for (i = 0 ; i <= last ; i++) {
+for (i = 0 ; i < last ; i++) {
 printf("%d -> %s \n",i,name[i]);
 fprintf(fpPtrWrite,"%s \n",name[i]);
 }
@@ -66,4 +66,5 @@ fprintf(fpPtrWrite,"%s \n",name[i]);
 
 return 0; /* Indicates that the program terminated successfully */
 } /* End Main */
+
 
