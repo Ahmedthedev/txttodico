@@ -10,3 +10,14 @@
 	<stdlib.h>
 	<string.h>
 
+1481358015 source:/home/ahmed/Desktop/txttodico/function.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+
+1481358178 source:/home/ahmed/Desktop/txttodico/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
