@@ -1,14 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #define SIZE 30
 #define LEN 31
 #define SIZE 30
 #define LEN 31
+
+void Cap(char string[]);
+
+void Cap(char string[]){
+    int i;
+    int x = strlen(string); // You want to get the length of the whole string.
+    for (i=0;i<x;i++){
+         if( i == 0 && string[i] > 96 && string[i] < 123 ) {
+            string[i] -= 32;
+
+         }else if(i > 0 && string[i] > 64 && string[i] < 96) {
+            string[i] += 32;
+         }
+    }
+}
 
 int main()
 {
+
 char name[LEN][SIZE]; /* Data records */
 char hold[LEN] ;
 int i,j ; /* indices of array */
@@ -37,7 +54,8 @@ else {
 printf("dans le fichiers il y a\n");
 for(i = 0 ; !feof( fpPtr ) ; i++ ) {
 fscanf( fpPtr, "%s", name[i] );
-printf("%s", name[i]);
+Cap(name[i]);
+//printf("%c \n", name[i][0]);
 } /* End while */
 last = i - 1 ;
 
@@ -66,5 +84,4 @@ fprintf(fpPtrWrite,"%s \n",name[i]);
 
 return 0; /* Indicates that the program terminated successfully */
 } /* End Main */
-
 
