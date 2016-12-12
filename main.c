@@ -3,16 +3,25 @@
 #include <string.h>
 #include <ctype.h>
 
-#define SIZE 30
-#define LEN 31
-#define SIZE 30
-#define LEN 31
+#define SIZE 30 // Taille la plus grande d'un mots 'Hexakosioihexekontahexaphobie'
+#define LEN 30000 // nombre de mot moyens dans un dico
+
 
 void Cap(char string[]);
 
 void Cap(char string[]){
     int i;
-    int x = strlen(string); // You want to get the length of the whole string.
+    int x = strlen(string);
+
+    //while(string[i] >= 32 && string[i] <= 64  || string[i] >= 122) {
+     for (i=0;i<x;i++){
+         if(string[i] >= 32 && string[i] <= 64  || string[i] >= 122) {
+                string[i] = NULL;
+         }
+         //   printf("%d %c => Alert\n",string[i],string[i]);
+    }
+
+     // You want to get the length of the whole string.
     for (i=0;i<x;i++){
          if( i == 0 && string[i] > 96 && string[i] < 123 ) {
             string[i] -= 32;
@@ -23,7 +32,7 @@ void Cap(char string[]){
     }
 }
 
-int main()
+int main(int argc, char *argv[])
 {
 
 char name[LEN][SIZE]; /* Data records */
@@ -40,22 +49,22 @@ copy file contents to array
 
 /* fopen opens file; exits program if file cannot be opened */
 if ( ( fpPtrWrite = fopen("writeFile.txt", "w" ) ) == NULL ) {
-printf( "File could not be opened" );
+printf( "Fichier ne pas pas être ouvert" );
 }
 
 /* fopen opens file; exits program if file cannot be opened */
 if ( ( fpPtr = fopen("readFile.txt", "r" ) ) == NULL ) {
-printf( "File could not be opened" );
+printf( "Fichier ne pas pas être ouvert" );
 } /* End if */
 
 /* Read records from file */
 else {
 /* While not end of file */
-printf("dans le fichiers il y a\n");
+//printf("dans le fichiers il y a\n");
 for(i = 0 ; !feof( fpPtr ) ; i++ ) {
 fscanf( fpPtr, "%s", name[i] );
 Cap(name[i]);
-//printf("%c \n", name[i][0]);
+printf("%s \n", name[i]);
 } /* End while */
 last = i - 1 ;
 
@@ -75,10 +84,16 @@ strcpy(name[j - 1],hold) ;
 write array to output
 */
 char * integer = "lol";
-printf("\n ordre alphabetique \n ");
-for (i = 0 ; i < last ; i++) {
-printf("%d -> %s \n",i,name[i]);
-fprintf(fpPtrWrite,"%s \n",name[i]);
+//printf("\n ordre alphabetique \n ");
+for (i = 0 ; i <= last ; i++) {
+if( strcmp(name[i],"") != 0) {
+    if(i == last ) {
+        fprintf(fpPtrWrite,"%s ",name[i]);
+    }else {
+    fprintf(fpPtrWrite,"%s \n",name[i]);
+    }
+
+}
 }
 } /* End else */
 
