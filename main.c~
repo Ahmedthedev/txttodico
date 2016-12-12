@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 #define SIZE 30 // Taille la plus grande d'un mots 'Hexakosioihexekontahexaphobie'
 #define LEN 30000 // nombre de mot moyens dans un dico
-
 
 void Cap(char string[]);
 
@@ -34,6 +32,9 @@ void Cap(char string[]){
 
 int main(int argc, char *argv[])
 {
+
+
+
 
 char name[LEN][SIZE]; /* Data records */
 char hold[LEN] ;
@@ -64,11 +65,11 @@ else {
 for(i = 0 ; !feof( fpPtr ) ; i++ ) {
 fscanf( fpPtr, "%s", name[i] );
 Cap(name[i]);
-printf("%s \n", name[i]);
 } /* End while */
 last = i - 1 ;
 
 fclose( fpPtr ); /* fclose closes the file */
+
 
 /*
 sort
@@ -79,11 +80,12 @@ if (strcmp(name[j],name[j - 1]) < 0) {
 strcpy(hold,name[j]) ;
 strcpy(name[j],name[j - 1]) ;
 strcpy(name[j - 1],hold) ;
+} else if(strcmp(name[j],name[j - 1]) == 0) {
+strcpy(name[j-1],"");
 }
 /*
 write array to output
 */
-char * integer = "lol";
 //printf("\n ordre alphabetique \n ");
 for (i = 0 ; i <= last ; i++) {
 if( strcmp(name[i],"") != 0) {
@@ -92,7 +94,6 @@ if( strcmp(name[i],"") != 0) {
     }else {
     fprintf(fpPtrWrite,"%s \n",name[i]);
     }
-
 }
 }
 } /* End else */
