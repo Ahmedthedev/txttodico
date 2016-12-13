@@ -1,11 +1,10 @@
 # depslib dependency file v1.0
-1480933580 source:c:\wamp\www\ahmed\c\txttodico\function.c
+1481563403 source:/home/ahmed/Desktop/C cours/test/main/main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
-	<unistd.h>
 
-1481126859 source:c:\wamp\www\ahmed\c\txttodico\main.c
+1481665693 source:d:\esgi$\txttodico-master\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
