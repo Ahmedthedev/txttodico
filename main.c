@@ -34,8 +34,6 @@ int main(int argc, char *argv[])
 {
 
 
-
-
 char name[LEN][SIZE]; /* Data records */
 char hold[LEN] ;
 int i,j ; /* indices of array */
@@ -50,12 +48,12 @@ copy file contents to array
 
 /* fopen opens file; exits program if file cannot be opened */
 if ( ( fpPtrWrite = fopen("writeFile.txt", "w" ) ) == NULL ) {
-printf( "Fichier ne pas pas Ãªtre ouvert" );
+printf( "Fichier ne pas pas être ouvert" );
 }
 
 /* fopen opens file; exits program if file cannot be opened */
 if ( ( fpPtr = fopen("readFile.txt", "r" ) ) == NULL ) {
-printf( "Fichier ne pas pas Ãªtre ouvert" );
+printf( "Fichier ne pas pas être ouvert" );
 } /* End if */
 
 /* Read records from file */
@@ -77,11 +75,11 @@ sort
 for (i = last ; i > 0 ; i--)
 for (j = 1 ; j <= i ; j++)
 if (strcmp(name[j],name[j - 1]) < 0) {
-strcpy(hold,name[j]) ;
-strcpy(name[j],name[j - 1]) ;
-strcpy(name[j - 1],hold) ;
+    strcpy(hold,name[j]) ;
+    strcpy(name[j],name[j - 1]) ;
+    strcpy(name[j - 1],hold) ;
 } else if(strcmp(name[j],name[j - 1]) == 0) {
-strcpy(name[j-1],"");
+    strcpy(name[j-1],"");
 }
 /*
 write array to output
@@ -100,4 +98,3 @@ if( strcmp(name[i],"") != 0) {
 
 return 0; /* Indicates that the program terminated successfully */
 } /* End Main */
-
